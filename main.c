@@ -11,10 +11,11 @@
 #include<string.h>
 int main()
 {
+  char ch;
   int oCount = 0;
   int xCount = 0;
   int choice;
-  char ch;
+  
   printf("Choose your symbol\n");
   printf("1 : X\n");
   printf("2 : O\n");
