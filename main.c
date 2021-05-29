@@ -11,13 +11,15 @@
 #include<string.h>
 int main()
 {
+  int oCount = 0;
+  int xCount = 0;
   int choice;
   char ch;
   printf("Choose your symbol\n");
   printf("1 : X\n");
   printf("2 : O\n");
   scanf("%c", &ch);
-    
+
   switch(ch)
   {
     case '1':
@@ -44,6 +46,7 @@ int main()
 
   printf("  %c  |  %c  |  %c  \n-----------------\n  %c  |  %c  |  %c  \n-----------------\n  %c  |  %c  |  %c  \n" , arr[0], arr[1], arr[2] , arr[3] , arr[4], arr[5] , arr[6] , arr[7] , arr[8]);
   printf("Turn of %c\n", ch);
+
   while(1)
   {
     printf("Enter your choice\n");
@@ -51,15 +54,18 @@ int main()
 
     if(turn % 2 != 0)
     {
+
       if(ch == 'O')
       {
         printf("Next turn of X\n");
         arr[choice - 1] = 'O';
+        oCount++;
       }
       else
       {
         printf("Next turn of O\n");
         arr[choice - 1] = 'X';
+        xCount++;
       }
     }
     else
@@ -68,20 +74,35 @@ int main()
       {
         printf("Next turn of X\n");
         arr[choice - 1] = 'X';
+        xCount++;
       }
       else
       {
         printf("Next turn of O\n");
         arr[choice - 1] = 'O';
+        oCount++;
       }
     }
 
     printf("  %c  |  %c  |  %c  \n-----------------\n  %c  |  %c  |  %c  \n-----------------\n  %c  |  %c  |  %c  \n" , arr[0], arr[1], arr[2] , arr[3] , arr[4], arr[5] , arr[6] , arr[7] , arr[8]);
-  
-    
+
+
     if((arr[0] == arr[1] && arr[0] ==  arr[2]) || (arr[0] == arr[3] && arr[0] == arr[6]) || (arr[3] == arr[4] && arr[3] == arr[5]) || (arr[6] == arr[7] && arr[6] == arr[8]) || (arr[1] == arr[4] && arr[1] == arr[7])  || (arr[2] == arr[6] && arr[2] == arr[8] ))
     {
-      printf("%c is the winner\n", ch);
+
+      if(xCount == oCount)
+      {
+        if(ch == 'X')
+          printf("O is the winner\n");
+        else
+          printf("X is the winner\n");
+        break;
+      }
+      printf("xCount %d\n", xCount);
+      printf("oCount %d\n", oCount);
+      char max = xCount>oCount?'X':'O';
+
+      printf("%c is the winner\n", max);
       break;
     }
     turn++;
@@ -90,5 +111,4 @@ int main()
   }
   printf("%s : End\n",__func__);
   return 0;
-}    
-
+}  
